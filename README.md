@@ -72,7 +72,7 @@ Resolution：135 * 240
  <tr><td>MICPHONE</td><td>CLK</td><td>DATA</td></tr>
 </table>
 
-**6-Axis posture sensor (SH200Q/MPU6886) & power management IC (AXP192)**
+**6-Axis posture sensor (MPU6886) & power management IC (AXP192)**
 
 <table>
  <tr><td>ESP32 </td><td>GPIO22</td><td>GPIO21</td>

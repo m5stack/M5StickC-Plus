@@ -74,7 +74,7 @@ Driver IC：ST7789v2
  <tr><td>MICPHONE</td><td>CLK</td><td>DATA</td></tr>
 </table>
 
-**6-Axis 姿态传感器 (SH200Q/MPU6886) & 电源管理 IC (AXP192)**
+**6-Axis 姿态传感器 (MPU6886) & 电源管理 IC (AXP192)**
 
 <table>
  <tr><td>ESP32 </td><td>GPIO22</td><td>GPIO21</td>
