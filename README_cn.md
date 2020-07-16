@@ -2,26 +2,28 @@
 
 English | [中文](README_cn.md)
 
-* **For the Detailed documentation of M5StickC, please click [here](https://docs.m5stack.com/#/en/core/m5stickc_plus)**
+* **[点击此处](https://docs.m5stack.com/#/zh_CN/core/m5stickc_plus)** 查看产品文档。
 
 <img src="https://m5stack.oss-cn-shenzhen.aliyuncs.com/image/product_jpg/assets/img/product_pics/core/minicore/m5stickc_plus/m5stickc_plus_01.jpg" alt="M5StickC_01" width="350">
 
-## Description
+## 描述
 
-**M5StickC PLUS** is powered by **ESP32-PICO-D4** with **Bluetooth 4.2** and **WiFi**.It's an upgrade big screen product of M5StickC.It is a portable, easy-to-use, open source, IoT development board. What it can do? This tiny block is able to realize your idea, enlighten your creativity, and help with your IoT prototying in a very short time. It will take away a lot of pains from the development process. M5stickC Plus is one of the core devices in M5Stack product series. The compact body is integrated with rich hardware resources, such as infrared, **RTC**, **Microphone**, **LED**, **IMU**, **Buttons**, **PMU**,etc. Compared with StickC, a buzzer is added and the big screen is upgraded to a 1.14-inch, **135 * 240** resolution LCD Screen.Compared with the previous display area, the display area is increased by 18.7%, and the battery capacity is **120mAh**.It also supports HAT and Unit family products.
 
-**Power switch operation：**
+**M5StickC PLUS** 是M5StickC的大屏幕版本，主控采用ESP32-PICO-D4模组，具备蓝牙4.2与WIFI功能，小巧的机身内部集成了丰富的硬件资源，如红外、RTC、麦克风、LED、IMU、按键、蜂鸣器、PMU等，在保留原有M5StickC功能的基础上加入了无源蜂鸣器，同时屏幕尺寸升级到1.14寸、135*240分辨率的TFT屏幕，相较之前的0.96寸屏幕增加18.7%的显示面积，电池容量达到120mAh，接口同样支持HAT与Unit系列产品.
 
-* Power on ：Long press power button for 2 seconds
 
-* Power off ：Short press power button for 6 seconds
+**开关机操作：**
 
-**Notice:**
+* 开机：按复位按键，持续至少 2 秒
 
-* Baud rate supported by M5StickC Plus: 1200 ~115200, 250K, 500K, 750K, 1500K
+* 关机：按复位按键，持续至少 6 秒
 
-* G36/G25 share the same port, when one of the pins is used, the other pin should be set as a floating input
-* For example, to use the G36 pin as the ADC input, Configuration the G25 pin as FLOATING
+**注意：**
+
+* M5StickC Plus支持的波特率: 1200 ~115200, 250K, 500K, 750K, 1500K
+
+* G36/G25共用同一个端口，当使用其中一个引脚时要将另外一个引脚设置为浮空输入
+* 比如要使用G36引脚作为ADC输入，则配置G25引脚为浮空状态
 
 ```arduino
 setup()
@@ -33,9 +35,9 @@ setup()
 }
 ```
 
-## PinMap
+## 管脚映射
 
-**RED LED & IR Transmitter & BUTTON A & BUTTON B**
+**RED LED & 红外发射管 & 按键 A & 按键 B**
 
 <table>
  <tr><td>ESP32 </td><td>GPIO10</td><td>GPIO9</td><td>GPIO37</td><td>GPIO39</td><td>GPIO2</td></tr>
@@ -51,7 +53,7 @@ setup()
 
 Driver IC：ST7789v2
 
-Resolution：135 * 240
+分辨率：135 * 240
 
 <table>
  <tr><td>ESP32 </td><td>GPIO15</td><td>GPIO13</td><td>GPIO23</td><td>GPIO18</td><td>GPIO5</td></tr>
@@ -65,14 +67,14 @@ Resolution：135 * 240
  <tr><td>GROVE port</td><td>SCL</td><td>SDA</td><td>5V</td><td>GND</td></tr>
 </table>
 
-**MIC (SPM1423)**
+**麦克分 (SPM1423)**
 
 <table>
  <tr><td>ESP32 </td><td>GPIO0</td><td>GPIO34</td></tr>
  <tr><td>MICPHONE</td><td>CLK</td><td>DATA</td></tr>
 </table>
 
-**6-Axis posture sensor (SH200Q/MPU6886) & power management IC (AXP192)**
+**6-Axis 姿态传感器 (SH200Q/MPU6886) & 电源管理 IC (AXP192)**
 
 <table>
  <tr><td>ESP32 </td><td>GPIO22</td><td>GPIO21</td>
@@ -88,7 +90,7 @@ Resolution：135 * 240
 </table>
 
 
-## Related Link
+## 相关链接
 
 -  **datasheet**
 
