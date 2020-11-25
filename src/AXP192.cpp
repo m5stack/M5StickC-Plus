@@ -468,3 +468,8 @@ void AXP192::SetLDO2( bool State )
 		buf = ~(1<<2) & buf;
 	Write1Byte( 0x12 , buf );
 }
+
+void AXP192::PowerOff()
+{
+    Write1Byte(0x32, Read8bit(0x32) | 0x80);     // MSB for Power Off
+}
