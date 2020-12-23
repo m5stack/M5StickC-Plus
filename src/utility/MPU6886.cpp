@@ -126,6 +126,25 @@ void MPU6886::getTempAdc(int16_t *t){
   *t=((uint16_t)buf[0]<<8)|buf[1];  
 }
 
+//!俯仰，航向，横滚：pitch，yaw，roll，指三维空间中飞行器的旋转状态。
+void MPU6886::getAhrsData(float *pitch,float *roll,float *yaw){
+
+  float accX = 0; 
+  float accY = 0;
+  float accZ = 0;
+
+  float gyroX = 0;
+  float gyroY = 0;
+  float gyroZ = 0;
+
+
+  getGyroData(&gyroX,&gyroY,&gyroZ);
+  getAccelData(&accX,&accY,&accZ);
+  
+  MahonyAHRSupdateIMU(gyroX * DEG_TO_RAD, gyroY * DEG_TO_RAD, gyroZ * DEG_TO_RAD, accX, accY, accZ,pitch,roll,yaw);
+
+}
+
 void MPU6886::getGres(){
 
    switch (Gyscale)

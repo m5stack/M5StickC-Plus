@@ -10,6 +10,7 @@
 
 #include <Wire.h>
 #include <Arduino.h>
+#include "MahonyAHRS.h"
 
 #define MPU6886_ADDRESS           0x68 
 #define MPU6886_WHOAMI            0x75
@@ -79,6 +80,8 @@ class MPU6886 {
 
       void SetGyroFsr(Gscale scale);
       void SetAccelFsr(Ascale scale);
+      void getAhrsData(float *pitch,float *roll,float *yaw);
+
 
     public:
       float aRes, gRes;
