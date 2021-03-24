@@ -67,7 +67,7 @@ Driver IC：ST7789v2
  <tr><td>GROVE port</td><td>SCL</td><td>SDA</td><td>5V</td><td>GND</td></tr>
 </table>
 
-**麦克分 (SPM1423)**
+**麦克风 (SPM1423)**
 
 <table>
  <tr><td>ESP32 </td><td>GPIO0</td><td>GPIO34</td></tr>
