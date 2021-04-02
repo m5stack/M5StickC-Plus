@@ -10,8 +10,7 @@ void setup()
     M5.Lcd.setTextColor(TFT_GREEN);
     M5.Lcd.setRotation(1);
     M5.Lcd.drawCentreString("BUGC example", 120, 50, 4);
-    // if add battery, need increase charge current
-    M5.Axp.SetChargeCurrent(CURRENT_360MA);
+
 }
 
 void loop() 
