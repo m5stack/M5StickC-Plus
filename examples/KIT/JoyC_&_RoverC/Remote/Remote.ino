@@ -2,7 +2,7 @@
 #include <WiFi.h>
 #include <WiFiUdp.h>
 #include "EEPROM.h"
-#include "icon.h"
+#include "icon.c"
 
 #define EEPROM_SIZE 64
 
