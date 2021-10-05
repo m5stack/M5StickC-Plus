@@ -1,3 +1,15 @@
+/*
+*******************************************************************************
+* Copyright (c) 2021 by M5Stack
+*                  Equipped with M5StickC-Plus sample source code
+*                          配套  M5StickC-Plus 示例源代码
+* Visit the website for more information：https://docs.m5stack.com/en/core/m5stickc_plus
+* 获取更多资料请访问：https://docs.m5stack.com/zh_CN/core/m5stickc_plus
+*
+* describe: IMU.
+* date：2021/9/14
+*******************************************************************************
+*/
 #include <M5StickCPlus.h>
 
 float accX = 0.0F;
@@ -12,14 +24,16 @@ float pitch = 0.0F;
 float roll  = 0.0F;
 float yaw   = 0.0F;
 
+/* After M5StickC Plus is started or reset
+  the program in the setUp () function will be run, and this part will only be run once.
+  在 M5StickC Plus 启动或者复位后，即会开始执行setup()函数中的程序，该部分只会执行一次。 */
 void setup() {
-  // put your setup code here, to run once:
-  M5.begin();
-  M5.IMU.Init();
-  M5.Lcd.setRotation(3);
+  M5.begin();  //Init M5StickC Plus.  初始化 M5StickC Plus
+  M5.Imu.Init();  //Init IMU.  初始化IMU
+  M5.Lcd.setRotation(3);  //Rotate the screen. 将屏幕旋转
   M5.Lcd.fillScreen(BLACK);
   M5.Lcd.setTextSize(1);
-  M5.Lcd.setCursor(80, 15);
+  M5.Lcd.setCursor(80, 15); //set the cursor location.  设置光标位置
   M5.Lcd.println("IMU TEST");
   M5.Lcd.setCursor(30, 30);
   M5.Lcd.println("  X       Y       Z");
@@ -27,20 +41,16 @@ void setup() {
   M5.Lcd.println("  Pitch   Roll    Yaw");
 }
 
-float temp = 0;
-/*****************************************
-M5.IMU.getGyroData(&gyroX,&gyroY,&gyroZ);
-M5.IMU.getAccelData(&accX,&accY,&accZ);
-M5.IMU.getAhrsData(&pitch,&roll,&yaw);
-M5.IMU.getTempData(&temp);
-*****************************************/
+/* After the program in setup() runs, it runs the program in loop()
+The loop() function is an infinite loop in which the program runs repeatedly
+在setup()函数中的程序执行完后，会接着执行loop()函数中的程序
+loop()函数是一个死循环，其中的程序会不断的重复运行 */
 void loop() {
-  // put your main code here, to run repeatedly:
+  static float temp = 0;
   M5.IMU.getGyroData(&gyroX,&gyroY,&gyroZ);
   M5.IMU.getAccelData(&accX,&accY,&accZ);
   M5.IMU.getAhrsData(&pitch,&roll,&yaw);
   M5.IMU.getTempData(&temp);
-  
   M5.Lcd.setCursor(30, 40);
   M5.Lcd.printf("%6.2f  %6.2f  %6.2f      ", gyroX, gyroY, gyroZ);
   M5.Lcd.setCursor(170, 40);
