@@ -1,10 +1,13 @@
-# M5StickC-Plus Arduino Library
+# M5StickC-Plus Library
 
 English | [中文](README_cn.md)
 
-* **For the Detailed documentation of M5StickC, please click [here](https://docs.m5stack.com/#/en/core/m5stickc_plus)**
-
 <img src="https://m5stack.oss-cn-shenzhen.aliyuncs.com/image/product_jpg/assets/img/product_pics/core/minicore/m5stickc_plus/m5stickc_plus_01.jpg" alt="M5StickC_01" width="350">
+
+* **For the Detailed documentation of M5StickC Plus, please [Click here](https://docs.m5stack.com/#/zh_CN/core/m5stickc_plus)**
+
+* **In order to buy M5StickC Plus，please [Click here](https://item.taobao.com/item.htm?spm=a1z10.5-c-s.w4002-22404213529.57.17ed5523FXOi71&id=623449145184)**
+
 
 ## Description
 
@@ -23,78 +26,14 @@ English | [中文](README_cn.md)
 * G36/G25 share the same port, when one of the pins is used, the other pin should be set as a floating input
 * For example, to use the G36 pin as the ADC input, Configuration the G25 pin as FLOATING
 
-```arduino
-setup()
-{
-   M5.begin();
-   pinMode(36, INPUT);
-   gpio_pulldown_dis(GPIO_NUM_25);
-   gpio_pullup_dis(GPIO_NUM_25);
-}
-```
+## More Information
 
-## PinMap
+**UIFlow Quick Start**: [Click Here](https://docs.m5stack.com/en/quick_start/m5stickc_plus/uiflow)
 
-**RED LED & IR Transmitter & BUTTON A & BUTTON B**
+**MicroPyhton API**: [Click Here](https://docs.m5stack.com/en/mpy/display/m5stack_lvgl)
 
-<table>
- <tr><td>ESP32 </td><td>GPIO10</td><td>GPIO9</td><td>GPIO37</td><td>GPIO39</td><td>GPIO2</td></tr>
- <tr><td>RED LED</td><td>LED Pin</td><td></td><td></td><td></td><td></td></tr>
- <tr><td>IR Transmitter</td><td></td><td>Transmitter Pin</td><td></td><td></td><td></td></tr>
- <tr><td>BUTTON A</td><td></td><td></td><td>Button Pin</td><td></td><td></td></tr>
- <tr><td>BUTTON B</td><td></td><td></td><td></td><td>Button Pin</td><td></td></tr>
- <tr><td>Buzzer</td><td></td><td></td><td></td><td></td><td>Buzzer Pin</td></tr>
-</table>
+**Arduino IDE Development**: [Click Here](https://docs.m5stack.com/en/quick_start/m5stickc_plus/arduino)
 
+**M5StickC Arduino API**: [Click Here](https://docs.m5stack.com/en/api/stickc/system_m5stickc)
 
-**TFT LCD**
-
-Driver IC：ST7789v2
-
-Resolution：135 * 240
-
-<table>
- <tr><td>ESP32 </td><td>GPIO15</td><td>GPIO13</td><td>GPIO23</td><td>GPIO18</td><td>GPIO5</td></tr>
- <tr><td>TFT LCD</td><td>TFT_MOSI</td><td>TFT_CLK</td><td>TFT_DC</td><td>TFT_RST</td><td>TFT_CS</td></tr>
-</table>
-
-**GROVE PORT**
-
-<table>
- <tr><td>ESP32 </td><td>GPIO33</td><td>GPIO32</td><td>5V</td><td>GND</td></tr>
- <tr><td>GROVE port</td><td>SCL</td><td>SDA</td><td>5V</td><td>GND</td></tr>
-</table>
-
-**MIC (SPM1423)**
-
-<table>
- <tr><td>ESP32 </td><td>GPIO0</td><td>GPIO34</td></tr>
- <tr><td>MICPHONE</td><td>CLK</td><td>DATA</td></tr>
-</table>
-
-**6-Axis posture sensor (MPU6886) & power management IC (AXP192)**
-
-<table>
- <tr><td>ESP32 </td><td>GPIO22</td><td>GPIO21</td>
- <tr><td>6-Axis IMU sensor</td><td>SCL</td><td>SDA</td>
- <tr><td>Power management IC</td><td>SCL</td><td>SDA</td>
-</table>
-
-**AXP192**
-
-<table>
- <tr><td>Microphone</td><td>RTC</td><td>TFT backlight</td><td>TFT IC</td><td>ESP32/3.3V MPU6886</td><td>5V GROVE</td>
- <tr><td>LDOio0</td><td>LDO1</td><td>LDO2</td><td>LDO3</td><td>DC-DC1</td><td>IPSOUT</td>
-</table>
-
-
-## Related Link
-
--  **datasheet**
-
-    - [ESP32-PICO](https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/docs/datasheet/core/esp32-pico-d4_datasheet_en.pdf)
-    - [ST7789v2](https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/docs/datasheet/core/ST7789V.pdf)
-    - [BM8563](https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/docs/datasheet/core/BM8563_V1.1_cn.pdf)
-    - [MPU6886](https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/docs/datasheet/core/MPU-6886-000193%2Bv1.1_GHIC_en.pdf)
-    - [AXP192](https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/docs/datasheet/core/AXP192_datasheet_en.pdf)
-    - [SPM1423](https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/docs/datasheet/core/SPM1423HM4H-B_datasheet_en.pdf)
+**PinMap**: [Click Here](https://docs.m5stack.com/en/core/m5stickc_plus)
