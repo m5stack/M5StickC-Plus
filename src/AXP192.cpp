@@ -119,7 +119,7 @@ uint32_t AXP192::Read32bit( uint8_t Addr )
 	Wire1.beginTransmission(0x34);
 	Wire1.write(Addr);
 	Wire1.endTransmission();
-	Wire1.requestFrom(0x34, 2);
+	Wire1.requestFrom(0x34, 4);
 	for( int i = 0 ; i < 4 ; i++ )
 	{
 		ReData <<= 8;
@@ -206,7 +206,8 @@ float AXP192::GetCoulombData(void){
 
   //c = 65536 * current_LSB * (coin - coout) / 3600 / ADC rate
   //Adc rate can be read from 84H ,change this variable if you change the ADC reate
-  float ccc = 65536 * 0.5 * (coin - coout) / 3600.0 / 25.0;
+    float ccc = 65536 * 0.5 * (int32_t)(coin - coout) / 3600.0 / 25.0;
+
   return ccc;
 
 }
