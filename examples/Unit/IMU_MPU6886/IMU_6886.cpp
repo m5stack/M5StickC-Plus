@@ -219,6 +219,23 @@ void IMU_6886::getTempData(float *t) {
   *t = (float)temp / 326.8 + 25.0;
 }
 
+// 2021-11-08 aturowsk added code from m5stack MPU6886.cpp implementation to unit code. Needs src/utility/MahonyAHRS.cpp  
+void IMU_6886::getAhrsData(float *pitch, float *roll, float *yaw) {
+
+  float accX = 0; 
+  float accY = 0;
+  float accZ = 0;
+
+  float gyroX = 0;
+  float gyroY = 0;
+  float gyroZ = 0;
+
+
+  getGyroData(&gyroX, &gyroY, &gyroZ);
+  getAccelData(&accX, &accY, &accZ);
+  MahonyAHRSupdateIMU(gyroX * DEG_TO_RAD, gyroY * DEG_TO_RAD, gyroZ * DEG_TO_RAD, accX, accY, accZ, pitch, roll, yaw);
+}
+
 void IMU_6886::setGyroOffset(uint16_t x, uint16_t y, uint16_t z) {
   uint8_t buf_out[6];
   buf_out[0] = x >> 8;
