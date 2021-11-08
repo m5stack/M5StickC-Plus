@@ -4,7 +4,7 @@ English | [中文](README_cn.md)
 
 <img src="https://m5stack.oss-cn-shenzhen.aliyuncs.com/image/product_jpg/assets/img/product_pics/core/minicore/m5stickc_plus/m5stickc_plus_01.jpg" alt="M5StickC_01" width="350">
 
-* **For the Detailed documentation of M5StickC Plus, please [Click here](https://docs.m5stack.com/#/zh_CN/core/m5stickc_plus)**
+* **For the Detailed documentation of M5StickC Plus, please [Click here](https://docs.m5stack.com/#/en/core/m5stickc_plus)**
 
 * **In order to buy M5StickC Plus，please [Click here](https://item.taobao.com/item.htm?spm=a1z10.5-c-s.w4002-22404213529.57.17ed5523FXOi71&id=623449145184)**
 

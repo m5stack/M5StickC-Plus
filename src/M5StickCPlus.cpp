@@ -44,6 +44,7 @@ void M5StickCPlus::begin(bool LCDEnable, bool PowerEnable, bool SerialEnable){
 void M5StickCPlus::update() {
 	M5.BtnA.read();
 	M5.BtnB.read();
+	M5.Beep.update();
 }
 
 M5StickCPlus M5;
