@@ -2,7 +2,7 @@
 
 English | [中文](README.md)
 
-<img src="https://m5stack.oss-cn-shenzhen.aliyuncs.com/image/product_jpg/assets/img/product_pics/core/minicore/m5stickc_plus/m5stickc_plus_01.jpg" alt="M5StickC_01" width="350">
+<img src="https://static-cdn.m5stack.com/resource/docs/static/assets/img/product_pics/core/minicore/m5stickc_plus/m5stickc_plus_01.webp" alt="M5StickC_01" width="350">
 
 * **如果查看 M5StickC Plus 的详细介绍文档，[点击这里](https://docs.m5stack.com/#/zh_CN/core/m5stickc_plus)**
 
