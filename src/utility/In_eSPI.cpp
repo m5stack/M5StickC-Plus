@@ -2008,7 +2008,7 @@ void TFT_eSPI::fillTriangle ( int32_t x0, int32_t y0, int32_t x1, int32_t y1, in
 ** Function name:           drawBitmap
 ** Description:             Draw an image stored in an array on the TFT
 ***************************************************************************************/
-void TFT_eSPI::drawBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, uint16_t color)
+void TFT_eSPI::drawBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, uint16_t color, uint16_t bgcolor)
 {
   spi_begin();
   inTransaction = true;
@@ -2017,14 +2017,15 @@ void TFT_eSPI::drawBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t w
 
   for (j = 0; j < h; j++) {
     for (i = 0; i < w; i++ ) {
-      if (pgm_read_byte(bitmap + j * byteWidth + i / 8) & (128 >> (i & 7))) {
+      if (pgm_read_byte(bitmap + j * byteWidth + i / 8) & (128 >> (i & 7))) 
         drawPixel(x + i, y + j, color);
-      }
+      else drawPixel(x + i, y + j, bgcolor);
     }
   }
 
   inTransaction = false;
   spi_end();
+
 }
 
 
