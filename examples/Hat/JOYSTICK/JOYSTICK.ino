@@ -28,7 +28,7 @@ int8_t x_data, y_data, button_data;
 void setup() {
   // initialize the display
   M5.begin();
-  Wire.begin(0, 26, 100000);
+  Wire.begin(0, 26, 100000UL);
   // clear the background
   M5.Lcd.setRotation(2);
   M5.Lcd.fillRect(0, 0, 135, 240, BLACK);

@@ -21,7 +21,7 @@ extern uint8_t  lightG;
 void setup() {
   int8_t i,j;
   M5.begin();
-  Wire.begin(0, 26, 100000);
+  Wire.begin(0, 26, 100000UL);
   M5.Lcd.setRotation(1);
   M5.Lcd.setTextSize(2);
   
