@@ -85,7 +85,7 @@ uint8_t I2CWritebuff(uint8_t Addr, uint8_t *Data, uint16_t Length)
 int16_t speed_buff[4] = {0};
 int8_t speed_sendbuff[4] = {0};
 uint32_t count = 0;
-uint8_t IIC_ReState = I2C_ERROR_NO_BEGIN;
+uint8_t IIC_ReState = ESP_OK;
 
 uint8_t Setspeed(int16_t Vtx, int16_t Vty, int16_t Wt)
 {
