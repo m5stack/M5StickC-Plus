@@ -275,7 +275,8 @@ void AXP192::SetSleep(void) {
     Write1Byte(0x31, buf);
     Write1Byte(0x90, 0x00);
     Write1Byte(0x12, 0x09);
-    Write1Byte(0x12, 0x00);
+    // Write1Byte(0x12, 0x00);
+    Write1Byte(0x12, Read8bit(0x12) & 0xA1); // Disable all outputs but DCDC1
 }
 
 uint8_t AXP192::GetWarningLeve(void) {
