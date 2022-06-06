@@ -6,8 +6,7 @@ English | [中文](README_cn.md)
 
 * **For the Detailed documentation of M5StickC Plus, please [Click here](https://docs.m5stack.com/#/en/core/m5stickc_plus)**
 
-* **In order to buy M5StickC Plus，please [Click here](https://item.taobao.com/item.htm?spm=a1z10.5-c-s.w4002-22404213529.57.17ed5523FXOi71&id=623449145184)**
-
+* **In order to buy M5StickC Plus，please [Click here](https://shop.m5stack.com/collections/m5-controllers/products/m5stickc-plus-esp32-pico-mini-iot-development-kit)**
 
 ## Description
 
