@@ -3,12 +3,15 @@
 * Copyright (c) 2022 by M5Stack
 *                  Equipped with M5StickC Plus sample source code
 *                          配套  M5StickC Plus 示例源代码
-* Visit the website for more information:
+* Visit for more information:
 * 获取更多资料请访问:
 *
-* describe: Limit.
-* date: 2022/6/1
+* Product: Limit.
+* Date: 2022/6/1
 *******************************************************************************
+  如果按键按下,在屏幕上显示输出,否则显示为空白
+  If the key is pressed, the output is displayed on the screen, otherwise the
+  display is blank
 */
 
 #include <M5StickCPlus.h>

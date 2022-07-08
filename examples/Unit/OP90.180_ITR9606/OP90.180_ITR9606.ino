@@ -4,25 +4,22 @@
 
 #include <M5StickCPlus.h>
 
-
 void setup() {
-  // put your setup code here, to run once:
-  M5.begin();
-  //Wire.begin();
-  M5.Lcd.setCursor(30, 5, 4);
-  M5.Lcd.println("90/180");
+    // put your setup code here, to run once:
+    M5.begin();
+    // Wire.begin();
+    M5.Lcd.setCursor(30, 5, 4);
+    M5.Lcd.println("90/180");
     M5.Lcd.setCursor(20, 30, 4);
-  M5.Lcd.println("OPTICAL");
+    M5.Lcd.println("OPTICAL");
 
-  pinMode(33,INPUT_PULLUP);
-
+    pinMode(33, INPUT_PULLUP);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  M5.Lcd.setCursor(12, 100, 4);
-  M5.Lcd.printf("IR receive:");
-   M5.Lcd.setCursor(40, 140 ,8);
-  M5.Lcd.printf("%d",digitalRead(33));
-
+    // put your main code here, to run repeatedly:
+    M5.Lcd.setCursor(12, 100, 4);
+    M5.Lcd.printf("IR receive:");
+    M5.Lcd.setCursor(40, 140, 8);
+    M5.Lcd.printf("%d", digitalRead(33));
 }

@@ -9,42 +9,42 @@
 
 // Sampling is tightly related to the dynamic range of the ADC.
 // refer to the datasheet for further info
-#define SAMPLING_RATE                       MAX30100_SAMPRATE_100HZ
+#define SAMPLING_RATE MAX30100_SAMPRATE_100HZ
 
-// The LEDs currents must be set to a level that avoids clipping and maximises the
-// dynamic range
-#define IR_LED_CURRENT                      MAX30100_LED_CURR_50MA
-#define RED_LED_CURRENT                     MAX30100_LED_CURR_27_1MA
+// The LEDs currents must be set to a level that avoids clipping and maximises
+// the dynamic range
+#define IR_LED_CURRENT  MAX30100_LED_CURR_50MA
+#define RED_LED_CURRENT MAX30100_LED_CURR_27_1MA
 
 // The pulse width of the LEDs driving determines the resolution of
 // the ADC (which is a Sigma-Delta).
-// set HIGHRES_MODE to true only when setting PULSE_WIDTH to MAX30100_SPC_PW_1600US_16BITS
-#define PULSE_WIDTH                         MAX30100_SPC_PW_1600US_16BITS
-#define HIGHRES_MODE                        true
-
+// set HIGHRES_MODE to true only when setting PULSE_WIDTH to
+// MAX30100_SPC_PW_1600US_16BITS
+#define PULSE_WIDTH  MAX30100_SPC_PW_1600US_16BITS
+#define HIGHRES_MODE true
 
 // Instantiate a MAX30100 sensor class
 MAX30100 sensor;
 
-void setup()
-{   
+void setup() {
     M5.begin();
     M5.Lcd.setRotation(3);
-    //M5.Lcd.setTextColor(WHITE);
+    // M5.Lcd.setTextColor(WHITE);
     M5.Lcd.setTextSize(3);
     M5.Lcd.print("MAX30100");
-  //M5.Lcd.clear(BLACK);
+    // M5.Lcd.clear(BLACK);
     M5.Lcd.setCursor(0, 40);
     Serial.begin(115200);
 
     Serial.print("Initializing MAX30100..");
 
     // Initialize the sensor
-    // Failures are generally due to an improper I2C wiring, missing power supply
-    // or wrong target chip
+    // Failures are generally due to an improper I2C wiring, missing power
+    // supply or wrong target chip
     if (!sensor.begin()) {
         Serial.println("FAILED");
-        for(;;);
+        for (;;)
+            ;
     } else {
         Serial.println("SUCCESS");
     }
@@ -57,8 +57,7 @@ void setup()
     sensor.setHighresModeEnabled(HIGHRES_MODE);
 }
 
-void loop()
-{
+void loop() {
     uint16_t ir, red;
 
     sensor.update();
@@ -67,6 +66,5 @@ void loop()
         Serial.print(ir);
         Serial.print('\t');
         Serial.println(red);
-
     }
 }

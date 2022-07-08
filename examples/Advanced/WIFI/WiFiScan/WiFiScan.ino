@@ -3,12 +3,11 @@
 * Copyright (c) 2021 by M5Stack
 *                  Equipped with M5StickC-Plus sample source code
 *                          配套  M5StickC-Plus 示例源代码
-* Visit the website for more
-information：https://docs.m5stack.com/en/core/m5stickc_plus
-* 获取更多资料请访问：https://docs.m5stack.com/zh_CN/core/m5stickc_plus
+* Visit for more information: https://docs.m5stack.com/en/core/m5stickc_plus
+* 获取更多资料请访问: https://docs.m5stack.com/zh_CN/core/m5stickc_plus
 *
-* describe：Wifi scan.  wifi扫描
-* date：2022/4/3
+* Describe: Wifi scan.  wifi扫描
+* Date: 2022/4/3
 *******************************************************************************
   http://forum.m5stack.com/topic/58/lesson-3-wi-fi-scanner
   Press M5 to start/re-scan wifi, press up to turn down the page

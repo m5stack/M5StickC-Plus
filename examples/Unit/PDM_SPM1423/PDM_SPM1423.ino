@@ -182,4 +182,6 @@ void setup() {
     microPhoneSetup();
 }
 
-void loop() { MicroPhoneFFT(); }
+void loop() {
+    MicroPhoneFFT();
+}

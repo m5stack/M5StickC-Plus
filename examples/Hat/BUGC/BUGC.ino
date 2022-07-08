@@ -3,18 +3,15 @@
 
 BUGC BugC;
 
-void setup() 
-{
+void setup() {
     M5.begin();
     BugC.Init();
     M5.Lcd.setTextColor(TFT_GREEN);
     M5.Lcd.setRotation(1);
     M5.Lcd.drawCentreString("BUGC example", 120, 50, 4);
-
 }
 
-void loop() 
-{
+void loop() {
     M5.update();
 
     BugC.BugCSetColor(0x100000, 0x000010);

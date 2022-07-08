@@ -1,5 +1,6 @@
 /*
-    Description: Control 4 relays and demonstrate the asynchronous control relay LED
+    Description: Control 4 relays and demonstrate the asynchronous control relay
+   LED
 */
 
 #include <M5StickCPlus.h>
@@ -19,106 +20,90 @@
 //
 /*-------------------------------------------------------------------------------*/
 
-void WriteRelayReg( int regAddr, int data )
-{
-  Wire.beginTransmission(0x26);
-  Wire.write(regAddr);
-  Wire.write(data);
-  Wire.endTransmission();
-  Serial.printf("[ W ] %02X : %02X. \r\n", regAddr, data);
+void WriteRelayReg(int regAddr, int data) {
+    Wire.beginTransmission(0x26);
+    Wire.write(regAddr);
+    Wire.write(data);
+    Wire.endTransmission();
+    Serial.printf("[ W ] %02X : %02X. \r\n", regAddr, data);
 }
 
-int readRelayReg(int regAddr)
-{
-  Wire.beginTransmission(0x26);
-  Wire.write(regAddr);
-  Wire.endTransmission();
-  Wire.requestFrom(0x26, 1);
-  int data = Wire.read() & 0x00ff;
-  Serial.printf("[ R ] %02X : %02X. \r\n", regAddr, data);
-  return data;
+int readRelayReg(int regAddr) {
+    Wire.beginTransmission(0x26);
+    Wire.write(regAddr);
+    Wire.endTransmission();
+    Wire.requestFrom(0x26, 1);
+    int data = Wire.read() & 0x00ff;
+    Serial.printf("[ R ] %02X : %02X. \r\n", regAddr, data);
+    return data;
 }
 
-void WriteRelayNumber( int number, int state )
-{
-  int StateFromDevice = readRelayReg(0x11);
-  if ( state == 0 )
-  {
-    StateFromDevice &= ~( 0x01 << number );
-  }
-  else
-  {
-    StateFromDevice |= ( 0x01 << number );
-  }
-  WriteRelayReg(0x11, StateFromDevice);
+void WriteRelayNumber(int number, int state) {
+    int StateFromDevice = readRelayReg(0x11);
+    if (state == 0) {
+        StateFromDevice &= ~(0x01 << number);
+    } else {
+        StateFromDevice |= (0x01 << number);
+    }
+    WriteRelayReg(0x11, StateFromDevice);
 }
 
 void setup() {
-  // put your setup code here, to run once:
-  M5.begin();
-  M5.Lcd.setRotation(3);
-  M5.Lcd.setTextFont(2);
-  Wire.begin(32, 33);
-  M5.Lcd.setCursor(75, 5);
-  M5.Lcd.setTextColor(TFT_GREEN, TFT_BLACK);
-  M5.Lcd.print("4-RELAY UNIT");
-  M5.Lcd.setCursor(25, 25);
-  M5.Lcd.print("Independent Switch:");
-  M5.Lcd.setCursor(25, 45);
-  M5.Lcd.print("LED Sync/Async:");
-  readRelayReg(0x10);
-  readRelayReg(0x11);
-  WriteRelayReg(0x10, 1);
-  WriteRelayReg(0x11, 0);
-  //WriteRelayNumber(0,0);
+    // put your setup code here, to run once:
+    M5.begin();
+    M5.Lcd.setRotation(3);
+    M5.Lcd.setTextFont(2);
+    Wire.begin(32, 33);
+    M5.Lcd.setCursor(75, 5);
+    M5.Lcd.setTextColor(TFT_GREEN, TFT_BLACK);
+    M5.Lcd.print("4-RELAY UNIT");
+    M5.Lcd.setCursor(25, 25);
+    M5.Lcd.print("Independent Switch:");
+    M5.Lcd.setCursor(25, 45);
+    M5.Lcd.print("LED Sync/Async:");
+    readRelayReg(0x10);
+    readRelayReg(0x11);
+    WriteRelayReg(0x10, 1);
+    WriteRelayReg(0x11, 0);
+    // WriteRelayNumber(0,0);
 }
 
 int count_i = 0;
 bool flag_led, flag_relay = false;
 
-
 void loop() {
-  if (M5.BtnA.wasPressed())
-  {
-    M5.Lcd.fillRect(160, 25, 35, 15, TFT_BLACK);
-    M5.Lcd.setCursor(160, 25);
-    if (count_i < 4)
-    {
-      M5.Lcd.printf("%d ON", count_i);
-      WriteRelayReg(0x11, (0x01 << count_i));
+    if (M5.BtnA.wasPressed()) {
+        M5.Lcd.fillRect(160, 25, 35, 15, TFT_BLACK);
+        M5.Lcd.setCursor(160, 25);
+        if (count_i < 4) {
+            M5.Lcd.printf("%d ON", count_i);
+            WriteRelayReg(0x11, (0x01 << count_i));
+        } else if (count_i == 4) {
+            M5.Lcd.print("ON");
+            for (int i = 0; i < 4; i++) {
+                WriteRelayNumber(i, 1);
+            }
+        } else if (count_i == 5) {
+            M5.Lcd.print("OFF");
+            for (int i = 0; i < 4; i++) {
+                WriteRelayNumber(i, 0);
+            }
+        }
+        count_i++;
+        if (count_i >= 6) count_i = 0;
     }
-    else if (count_i == 4)
-    {
-      M5.Lcd.print("ON");
-      for (int i = 0; i < 4; i++)
-      {
-        WriteRelayNumber(i, 1);
-      }
+    if (M5.BtnB.wasPressed()) {
+        M5.Lcd.fillRect(145, 45, 40, 15, TFT_BLACK);  // TFT_BLACK
+        M5.Lcd.setCursor(145, 45);
+        if (!flag_led) {
+            M5.Lcd.print("Async");
+            WriteRelayReg(0x10, 0);
+        } else {
+            M5.Lcd.print("Sync");
+            WriteRelayReg(0x10, 1);
+        }
+        flag_led = !flag_led;
     }
-    else if (count_i == 5)
-    {
-      M5.Lcd.print("OFF");
-      for (int i = 0; i < 4; i++)
-      {
-        WriteRelayNumber(i, 0);
-      }
-    }
-    count_i++;
-    if ( count_i >= 6 ) count_i = 0;
-  }
-  if (M5.BtnB.wasPressed())
-  {
-    M5.Lcd.fillRect(145, 45, 40, 15, TFT_BLACK);//TFT_BLACK
-     M5.Lcd.setCursor(145, 45);
-    if (!flag_led) {
-      M5.Lcd.print("Async");
-      WriteRelayReg(0x10, 0);
-    } else {
-      M5.Lcd.print("Sync");
-      WriteRelayReg(0x10, 1);
-    }
-    flag_led = !flag_led;
-  }
 
-  M5.update();
+    M5.update();
 }

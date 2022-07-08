@@ -593,9 +593,13 @@ bool deviceConnected    = false;
 bool oldDeviceConnected = false;
 
 class MyServerCallbacks : public BLEServerCallbacks {
-    void onConnect(BLEServer *pServer) { deviceConnected = true; };
+    void onConnect(BLEServer *pServer) {
+        deviceConnected = true;
+    };
 
-    void onDisconnect(BLEServer *pServer) { deviceConnected = false; }
+    void onDisconnect(BLEServer *pServer) {
+        deviceConnected = false;
+    }
 };
 
 uint8_t *data = new uint8_t[128];

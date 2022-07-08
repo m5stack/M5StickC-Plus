@@ -2,8 +2,8 @@
 *******************************************************************************
 * Copyright (c) 2022 by M5Stack
 *                  Equipped with M5StickC Plus sample source code
-* describe: HAT 8SERVO.
-* date：2022/3/29
+* Describe: HAT 8SERVO.
+* Date: 2022/3/29
 *******************************************************************************
   Control the running and release of the servo.
 */

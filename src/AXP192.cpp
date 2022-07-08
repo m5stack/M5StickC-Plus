@@ -1,6 +1,7 @@
 #include "AXP192.h"
 
-AXP192::AXP192() {}
+AXP192::AXP192() {
+}
 
 void AXP192::begin(void) {
     Wire1.begin(21, 22);
@@ -161,17 +162,29 @@ bool AXP192::GetBatState() {
 // get discharge data: uint32_t GetCoulombdischargeData(void);
 // get coulomb val affter calculation: float GetCoulombData(void);
 //------------------------------------------
-void AXP192::EnableCoulombcounter(void) { Write1Byte(0xB8, 0x80); }
+void AXP192::EnableCoulombcounter(void) {
+    Write1Byte(0xB8, 0x80);
+}
 
-void AXP192::DisableCoulombcounter(void) { Write1Byte(0xB8, 0x00); }
+void AXP192::DisableCoulombcounter(void) {
+    Write1Byte(0xB8, 0x00);
+}
 
-void AXP192::StopCoulombcounter(void) { Write1Byte(0xB8, 0xC0); }
+void AXP192::StopCoulombcounter(void) {
+    Write1Byte(0xB8, 0xC0);
+}
 
-void AXP192::ClearCoulombcounter(void) { Write1Byte(0xB8, 0xA0); }
+void AXP192::ClearCoulombcounter(void) {
+    Write1Byte(0xB8, 0xA0);
+}
 
-uint32_t AXP192::GetCoulombchargeData(void) { return Read32bit(0xB0); }
+uint32_t AXP192::GetCoulombchargeData(void) {
+    return Read32bit(0xB0);
+}
 
-uint32_t AXP192::GetCoulombdischargeData(void) { return Read32bit(0xB4); }
+uint32_t AXP192::GetCoulombdischargeData(void) {
+    return Read32bit(0xB4);
+}
 
 float AXP192::GetCoulombData(void) {
     uint32_t coin  = 0;
@@ -276,7 +289,7 @@ void AXP192::SetSleep(void) {
     Write1Byte(0x90, 0x00);
     Write1Byte(0x12, 0x09);
     // Write1Byte(0x12, 0x00);
-    Write1Byte(0x12, Read8bit(0x12) & 0xA1); // Disable all outputs but DCDC1
+    Write1Byte(0x12, Read8bit(0x12) & 0xA1);  // Disable all outputs but DCDC1
 }
 
 uint8_t AXP192::GetWarningLeve(void) {
@@ -320,7 +333,9 @@ uint8_t AXP192::GetBtnPress() {
     return state;
 }
 
-uint8_t AXP192::GetWarningLevel(void) { return Read8bit(0x47) & 0x01; }
+uint8_t AXP192::GetWarningLevel(void) {
+    return Read8bit(0x47) & 0x01;
+}
 
 float AXP192::GetBatVoltage() {
     float ADCLSB    = 1.1 / 1000.0;
@@ -394,7 +409,9 @@ float AXP192::GetBatCoulombOut() {
     return ReData * 65536 * 0.5 / 3600 / 25.0;
 }
 
-void AXP192::SetCoulombClear() { Write1Byte(0xB8, 0x20); }
+void AXP192::SetCoulombClear() {
+    Write1Byte(0xB8, 0x20);
+}
 
 void AXP192::SetLDO2(bool State) {
     uint8_t buf = Read8bit(0x12);
