@@ -1,18 +1,14 @@
 /*
 *******************************************************************************
 * Copyright (c) 2022 by M5Stack
-*                  Equipped with M5StickC Plus sample source code
-*                          配套  M5StickC Plus 示例源代码
-* Visit the website for more information:
-* 获取更多资料请访问:
+*                  Equipped with M5StickCPlus sample source code
+*                          配套  M5StickCPlus 示例源代码
 *
-* Please follow the steps below to add FastLED library:
-* - Arduino menu --> Manage Libraries... --> FastLED --> install
-* 在烧录前请按以下步骤添加 FastLED 库:
-* - Arduino menu --> Manage Libraries... --> FastLED --> install
+* Visit for more information: https://docs.m5stack.com/en/unit/key
+* 获取更多资料请访问: https://docs.m5stack.com/zh_CN/unit/key
 *
-* Describe: UNIT-KEY example
-* date: 2022/6/1
+* Product: UNIT-KEY example
+* Date: 2022/6/1
 *******************************************************************************
 */
 
