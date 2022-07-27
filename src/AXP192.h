@@ -13,7 +13,7 @@ class AXP192 {
    public:
     AXP192();
     void begin(void);
-    void ScreenBreath(uint8_t brightness);
+    void ScreenBreath(int brightness);
     void ScreenSwitch(bool state);
 
     bool GetBatState();

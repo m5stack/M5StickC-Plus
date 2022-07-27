@@ -126,14 +126,12 @@ void AXP192::ReadBuff(uint8_t Addr, uint8_t Size, uint8_t *Buff) {
     }
 }
 
-void AXP192::ScreenBreath(uint8_t brightness) {
-    if (brightness > 12) {
-        brightness = 12;
-    } else if (brightness < 7) {
-        brightness = 7;
-    }
+void AXP192::ScreenBreath(int brightness) {
+    if (brightness > 100 || brightness < 0) return;
+    int vol     = map(brightness, 0, 100, 2500, 3200);
+    vol         = (vol < 1800) ? 0 : (vol - 1800) / 100;
     uint8_t buf = Read8bit(0x28);
-    Write1Byte(0x28, ((buf & 0x0f) | (brightness << 4)));
+    Write1Byte(0x28, ((buf & 0x0f) | ((uint16_t)vol << 4)));
 }
 
 void AXP192::ScreenSwitch(bool state) {
