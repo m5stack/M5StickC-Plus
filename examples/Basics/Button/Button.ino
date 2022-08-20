@@ -43,7 +43,7 @@ void loop() {
     } else if (M5.BtnB.wasReleased()) {  // If the button B is pressed. 如果按键
                                          // B 被按下，
         M5.Lcd.print('B');
-    } else if (M5.BtnB.wasReleasefor(
+    } else if (M5.BtnB.wasReleasedFor(
                    700)) {  // The button B is pressed for 700ms. 按键 B 按下
                             // 700ms,屏幕清空
         M5.Lcd.fillScreen(

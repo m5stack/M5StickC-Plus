@@ -106,7 +106,7 @@ uint8_t Button::wasReleased(void) {
     return !_state && _changed && millis() - _pressTime < _hold_time;
 }
 
-uint8_t Button::wasReleasefor(uint32_t ms) {
+uint8_t Button::wasReleasedFor(uint32_t ms) {
     _hold_time = ms;
     return !_state && _changed && millis() - _pressTime >= ms;
 }
