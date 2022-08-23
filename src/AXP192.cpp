@@ -43,7 +43,7 @@ void AXP192::begin(void) {
     // Enable bat detection
     Write1Byte(0x32, 0x46);
 
-    ScreenBreath(11);
+    // ScreenBreath(80);
 }
 
 void AXP192::Write1Byte(uint8_t Addr, uint8_t Data) {
