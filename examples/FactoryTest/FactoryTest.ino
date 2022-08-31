@@ -1140,7 +1140,7 @@ void setup() {
             delay(10);
         }
     }
-    M5.Axp.ScreenBreath(12);
+    M5.Axp.ScreenBreath(80);
 
     ColorBar();
 
