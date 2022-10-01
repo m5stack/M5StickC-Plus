@@ -35,7 +35,7 @@ void setup() {
     DateStruct.Month   = 3;
     DateStruct.Date    = 22;
     DateStruct.Year    = 2019;
-    M5.Rtc.SetData(&DateStruct);  // writes the set date to the real time clock.
+    M5.Rtc.SetDate(&DateStruct);  // writes the set date to the real time clock.
                                   // 将设置的日期写入实时时钟
 }
 
@@ -46,7 +46,7 @@ loop()函数是一个死循环，其中的程序会不断的重复运行 */
 void loop() {
     M5.Rtc.GetTime(&RTC_TimeStruct);  // Gets the time in the real-time clock.
                                       // 获取实时时钟内的时间
-    M5.Rtc.GetData(&RTC_DateStruct);
+    M5.Rtc.GetDate(&RTC_DateStruct);
     M5.Lcd.setCursor(30, 35);
     M5.Lcd.printf("Data : %04d-%02d-%02d\n", RTC_DateStruct.Year,
                   RTC_DateStruct.Month, RTC_DateStruct.Date);
