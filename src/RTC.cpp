@@ -142,7 +142,7 @@ void RTC::GetDate(RTC_DateTypeDef* RTC_DateStruct) {
     }
 }
 
-void RTC::GetDate(RTC_DateTypeDef* RTC_DateStruct) {
+void RTC::SetDate(RTC_DateTypeDef* RTC_DateStruct) {
     if (RTC_DateStruct == NULL) return;
     Wire1.beginTransmission(0x51);
     Wire1.write(0x05);
