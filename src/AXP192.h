@@ -62,6 +62,7 @@ class AXP192 {
     uint8_t GetWarningLevel(void);
     void SetCoulombClear();
     void SetLDO2(bool State);
+    void SetPeripherialsPower(uint8_t state);
 
     // -- Power Off
     void PowerOff();
