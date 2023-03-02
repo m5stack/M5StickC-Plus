@@ -30,7 +30,8 @@ void setup() {
                           //  audio.setVolume(63);
                           //
 
-    audio.connecttohost("http://vis.media-ice.musicradio.com/CapitalMP3");  // web radio
+    audio.connecttohost(
+        "http://vis.media-ice.musicradio.com/CapitalMP3");  // web radio
     // audio.connecttohost("http://iskatel.hostingradio.ru:8015/iskatel-320.aac");
     // // aac
     //  audio.connecttohost("http://mcrscast.mcr.iol.pt/cidadefm"); // mp3
