@@ -43,6 +43,9 @@
 #define MPU6886_ACCEL_CONFIG  0x1C
 #define MPU6886_ACCEL_CONFIG2 0x1D
 #define MPU6886_FIFO_EN       0x23
+// add register for R/W FIFO buffer
+#define MPU6886_FIFO_R_W          0x74
+
 
 //#define G (9.8)
 #define RtA     57.324841
@@ -54,6 +57,18 @@ class MPU6886 {
     enum Ascale { AFS_2G = 0, AFS_4G, AFS_8G, AFS_16G };
 
     enum Gscale { GFS_250DPS = 0, GFS_500DPS, GFS_1000DPS, GFS_2000DPS };
+
+// Enumeration type for selecting FIFO output data rate (sample rate)
+	  enum Fodr {
+    ODR_1kHz = 0,
+		  ODR_500Hz = 1,
+		  ODR_250Hz = 3,
+		  ODR_200Hz = 4,
+		  ODR_125Hz = 7,
+		  ODR_100Hz = 9,
+		  ODR_50Hz = 19,
+		  ODR_10Hz = 99
+	  };
 
     Gscale Gyscale = GFS_2000DPS;
     Ascale Acscale = AFS_8G;
@@ -73,6 +88,13 @@ class MPU6886 {
     void SetAccelFsr(Ascale scale);
     void getAhrsData(float* pitch, float* roll, float* yaw);
 
+ //	New public functions of MPU6886 to support FIFO buffered sensor data output
+	   void enableFIFO (Fodr rate);
+	   void resetFIFO (void);
+	   void disableFIFO (void);
+	   int getFIFOData(int16_t databuf[]);
+	   int getFIFOData(int16_t* ax, int16_t* ay, int16_t* az, int16_t *t, int16_t* gx, int16_t* gy, int16_t* gz);
+ 
    public:
     float aRes, gRes;
 
