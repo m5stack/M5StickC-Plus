@@ -223,3 +223,113 @@ void MPU6886::getTempData(float* t) {
 
     *t = (float)temp / 326.8 + 25.0;
 }
+
+void MPU6886::enableFIFO(Fodr rate) {
+    unsigned char regdata;
+
+    I2C_Read_NBytes(MPU6886_ADDRESS, MPU6886_GYRO_CONFIG, 1, &regdata);
+    regdata &= 0x1C;  // Clear bits 7:5 and 0:1 of FCHOICE_B to enable sample
+                      // rate divider and DLPF setting
+    I2C_Write_NBytes(MPU6886_ADDRESS, MPU6886_GYRO_CONFIG, 1, &regdata);
+    delay(10);
+
+    regdata = rate & 0xFF;  // Set sample rate clock divider based on passed
+                            // value for sample rate desired
+    I2C_Write_NBytes(MPU6886_ADDRESS, MPU6886_SMPLRT_DIV, 1, &regdata);
+    delay(10);
+
+    I2C_Read_NBytes(MPU6886_ADDRESS, MPU6886_CONFIG, 1, &regdata);
+    regdata |= 0x01;  // Set DLPF_CFG to 176Hz DLPF filtering (highest value
+                      // where sample rate clock divider still works)
+    regdata &= 0xBF;  // Clear bit 6 to allow overflow writes to the FIFO - Use
+                      // it, or lose it!
+    I2C_Write_NBytes(MPU6886_ADDRESS, MPU6886_CONFIG, 1, &regdata);
+    delay(10);
+
+    regdata = 0x18;  // Set GYRO_FIFO_EN and ACCEL_FIFO_EN bits to one in FIFO
+                     // Enable register to enable FIFO on ALL sensor data
+    I2C_Write_NBytes(MPU6886_ADDRESS, MPU6886_FIFO_EN, 1, &regdata);
+    delay(10);
+
+    I2C_Read_NBytes(MPU6886_ADDRESS, MPU6886_INT_ENABLE, 1, &regdata);
+    regdata |= 0x10;  // Set bit 4 to turn on interrupts on FIFO overflow events
+    I2C_Write_NBytes(MPU6886_ADDRESS, MPU6886_INT_ENABLE, 1, &regdata);
+    delay(10);
+
+    regdata = 0x44;  // Set FIFO_EN and FIFO_RST bits to one in User Control
+                     // register to enable FIFO mode
+    I2C_Write_NBytes(MPU6886_ADDRESS, MPU6886_USER_CTRL, 1, &regdata);
+    delay(10);
+}
+
+void MPU6886::resetFIFO(void) {
+    unsigned char regdata;
+
+    I2C_Read_NBytes(MPU6886_ADDRESS, MPU6886_USER_CTRL, 1, &regdata);
+    regdata |= 0x04;  // Set bit 2 to reset FIFO module
+    I2C_Write_NBytes(MPU6886_ADDRESS, MPU6886_USER_CTRL, 1, &regdata);
+    delay(10);
+}
+
+void MPU6886::disableFIFO(void) {
+    unsigned char regdata;
+
+    regdata = 0x00;  // Clear GYRO_FIFO_EN and ACCEL_FIFO_EN bits to zero in
+                     // FIFO Enable register
+    I2C_Write_NBytes(MPU6886_ADDRESS, MPU6886_FIFO_EN, 1, &regdata);
+    delay(10);
+
+    I2C_Read_NBytes(MPU6886_ADDRESS, MPU6886_INT_ENABLE, 1, &regdata);
+    regdata &=
+        0xEF;  // Clear bit 4 to turn off interrupts on FIFO overflow events
+    I2C_Write_NBytes(MPU6886_ADDRESS, MPU6886_INT_ENABLE, 1, &regdata);
+    delay(10);
+
+    regdata = 0x00;  // Set FIFO_EN bit to zero in User Control register to
+                     // dsiable FIFO mode
+    I2C_Write_NBytes(MPU6886_ADDRESS, MPU6886_USER_CTRL, 1, &regdata);
+    delay(10);
+}
+
+int MPU6886::getFIFOData(int16_t databuf[]) {
+    uint8_t buf[14];
+    uint8_t i;
+
+    I2C_Read_NBytes(MPU6886_ADDRESS, MPU6886_FIFO_R_W, 14,
+                    buf);  // Burst read 14 byte sensor data sample array
+
+    if ((((uint16_t)buf[0] << 8) | buf[1]) ==
+        0x7F7F) {  // Datasheet suggests 0xFFFF, but not what appears to work
+        return -1;
+    }
+    databuf[0] = ((int16_t)buf[0] << 8) | buf[1];    // accelX
+    databuf[1] = ((int16_t)buf[2] << 8) | buf[3];    // accelY
+    databuf[2] = ((int16_t)buf[4] << 8) | buf[5];    // accelZ
+    databuf[6] = ((int16_t)buf[6] << 8) | buf[7];    // temp
+    databuf[3] = ((int16_t)buf[8] << 8) | buf[9];    // gyroX
+    databuf[4] = ((int16_t)buf[10] << 8) | buf[11];  // gyroY
+    databuf[5] = ((int16_t)buf[12] << 8) | buf[13];  // gyroZ
+    return 0;
+}
+
+int MPU6886::getFIFOData(int16_t* ax, int16_t* ay, int16_t* az, int16_t* gx,
+                         int16_t* gy, int16_t* gz, int16_t* t) {
+    uint8_t buf[14];
+    uint8_t i;
+
+    I2C_Read_NBytes(MPU6886_ADDRESS, MPU6886_FIFO_R_W, 14,
+                    buf);  // Burst read 14 byte sensor data sample array
+
+    if ((((uint16_t)buf[0] << 8) | buf[1]) ==
+        0x7F7F) {  // Datasheet suggests 0xFFFF, but not what appears to work
+        return -1;
+    }
+    *ax = ((int16_t)buf[0] << 8) | buf[1];
+    *ay = ((int16_t)buf[2] << 8) | buf[3];
+    *az = ((int16_t)buf[4] << 8) | buf[5];
+    *t  = ((int16_t)buf[6] << 8) | buf[7];
+    *gx = ((int16_t)buf[8] << 8) | buf[9];
+    *gy = ((int16_t)buf[10] << 8) | buf[11];
+    *gz = ((int16_t)buf[12] << 8) | buf[13];
+    return 0;
+}
