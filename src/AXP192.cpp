@@ -281,13 +281,17 @@ uint16_t AXP192::GetVapsData(void) {
 }
 
 void AXP192::SetSleep(void) {
-    uint8_t buf = Read8bit(0x31);
-    buf         = (1 << 3) | buf;
-    Write1Byte(0x31, buf);
-    Write1Byte(0x90, 0x00);
-    Write1Byte(0x12, 0x09);
-    // Write1Byte(0x12, 0x00);
+    Write1Byte(0x31, Read8bit(0x31) | (1 << 3));
+    Write1Byte(0x90, 0x00);                   // GPIO0 voltage 0
+    Write1Byte(0x12, 0x09);                   // CDC1, LDO3
     Write1Byte(0x12, Read8bit(0x12) & 0xA1);  // Disable all outputs but DCDC1
+}
+
+void AXP192::WakeUpDisplayAfterLightSleep(void) {
+    // LDO2 is LCD Backlight
+    // LDO3 is LCD Power
+    // Enable Ext, LDO3, LDO2, DCDC1
+    Write1Byte(0x12, Read8bit(0x12) | 0x4D);
 }
 
 uint8_t AXP192::GetWarningLeve(void) {
@@ -320,6 +324,7 @@ void AXP192::LightSleep(uint64_t time_in_us) {
         esp_sleep_disable_wakeup_source(ESP_SLEEP_WAKEUP_TIMER);
     }
     esp_light_sleep_start();
+    WakeUpDisplayAfterLightSleep();
 }
 
 // 0 not press, 0x01 long press, 0x02 press
