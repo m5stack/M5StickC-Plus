@@ -27,7 +27,7 @@ WiFiServer server(80);
 
 void setup() {
     M5.begin();
-    M5.lcd.rotation(3);
+    M5.lcd.setRotation(3);
     M5.lcd.println("WIFI ACCESS POINT");  // Screen print string. 屏幕打印字符串
     M5.lcd.printf("Please connect:%s \nThen access to:", ssid);
     WiFi.softAP(

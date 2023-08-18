@@ -1,5 +1,9 @@
 # M5StickC-Plus Library
 
+[![Arduino Compile](https://github.com/m5stack/M5StickC-Plus/actions/workflows/arduino-action-stickc-plus-compile.yml/badge.svg)](https://github.com/m5stack/M5StickC-Plus/actions/workflows/arduino-action-stickc-plus-compile.yml)
+[![Arduino Lint](https://github.com/m5stack/M5StickC-Plus/actions/workflows/Arduino-Lint-Check.yml/badge.svg)](https://github.com/m5stack/M5StickC-Plus/actions/workflows/Arduino-Lint-Check.yml)
+[![Clang Format](https://github.com/m5stack/M5StickC-Plus/actions/workflows/clang-format-check.yml/badge.svg)](https://github.com/m5stack/M5StickC-Plus/actions/workflows/clang-format-check.yml)
+
 English | [中文](README.md)
 
 <img src="https://static-cdn.m5stack.com/resource/docs/static/assets/img/product_pics/core/minicore/m5stickc_plus/m5stickc_plus_01.webp" alt="M5StickC_01" width="350">

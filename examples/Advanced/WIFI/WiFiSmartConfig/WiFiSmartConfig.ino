@@ -15,7 +15,7 @@
 *https://www.espressif.com/en/products/software/esp-touch/resources APP下载地址:
 *https://www.espressif.com/zh-hans/products/software/esp-touch/resources
 */
-#include <M5StickC.h>
+#include <M5StickCPlus.h>
 #include "WiFi.h"
 
 void setup() {
@@ -28,7 +28,7 @@ void setup() {
                               // 兼容模式,并开始智能配网
 
     // Wait for the M5StickC to receive network information from the phone
-    //等待M5StickC接收到来自手机的配网信息
+    // 等待M5StickC接收到来自手机的配网信息
     M5.Lcd.print(
         "\nWaiting for Phone SmartConfig.");  // Screen print format string.
                                               // 屏幕打印格式化字符串
