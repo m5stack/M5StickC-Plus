@@ -20,7 +20,7 @@ English | [中文](README_cn.md)
 
 * Power on ：Long press power button for 2 seconds
 
-* Power off ：Short press power button for 6 seconds
+* Power off ：Long press power button for 6 seconds
 
 **Notice:**
 
