@@ -386,7 +386,6 @@ void MPU6886::disableFIFO(void) {
 
 int MPU6886::getFIFOData(int16_t databuf[]) {
     uint8_t buf[14];
-    uint8_t i;
 
     I2C_Read_NBytes(MPU6886_ADDRESS, MPU6886_FIFO_R_W, 14,
                     buf);  // Burst read 14 byte sensor data sample array
@@ -408,7 +407,6 @@ int MPU6886::getFIFOData(int16_t databuf[]) {
 int MPU6886::getFIFOData(int16_t* ax, int16_t* ay, int16_t* az, int16_t* gx,
                          int16_t* gy, int16_t* gz, int16_t* t) {
     uint8_t buf[14];
-    uint8_t i;
 
     I2C_Read_NBytes(MPU6886_ADDRESS, MPU6886_FIFO_R_W, 14,
                     buf);  // Burst read 14 byte sensor data sample array
