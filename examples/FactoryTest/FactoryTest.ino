@@ -1104,7 +1104,7 @@ int checkI2CAddr() {
                 Serial.printf("find %02X addr successful\r\n",
                               addrcheckbuff[i]);
             } else {
-                Serial.printf("find %02X addr faild\r\n", addrcheckbuff[i]);
+                Serial.printf("find %02X addr failed\r\n", addrcheckbuff[i]);
                 char strbuff[128];
                 sprintf(strbuff, "i2c %02X fail", addrcheckbuff[i]);
                 ErrorDialog(addrcheckbuff[i], (const char *)strbuff);
