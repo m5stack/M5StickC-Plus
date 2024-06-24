@@ -116,7 +116,7 @@ extern M5StickCPlus M5;
 #define IMU Imu
 
 #else
-#error “This library only supports boards with ESP32 processor.”
+#error "This library only supports boards with ESP32 processor."
 #endif
 
 #endif
