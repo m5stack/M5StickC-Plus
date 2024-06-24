@@ -16,9 +16,6 @@ void AXP192::begin(void) {
     // Bat charge voltage to 4.2, Current 100MA
     Write1Byte(0x33, 0xc0);
 
-    // Enable Bat,ACIN,VBUS,APS adc
-    Write1Byte(0x82, 0xff);
-
     // Enable Ext, LDO2, LDO3, DCDC1
     Write1Byte(0x12, Read8bit(0x12) | 0x4D);
 
