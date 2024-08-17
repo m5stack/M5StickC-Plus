@@ -7,14 +7,13 @@ SPEAKER::SPEAKER(void) {
 
 void SPEAKER::begin() {
     _begun = true;
-    ledcSetup(TONE_PIN_CHANNEL, 0, 13);
-    ledcAttachPin(SPEAKER_PIN, TONE_PIN_CHANNEL);
+    ledcAttach(TONE_PIN_CHANNEL, 0, 13);
     setBeep(4000, 100);
 }
 
 void SPEAKER::end() {
     mute();
-    ledcDetachPin(SPEAKER_PIN);
+    ledcDetach(SPEAKER_PIN);
     _begun = false;
 }
 
@@ -75,6 +74,5 @@ void SPEAKER::playMusic(const uint8_t* music_data, uint16_t sample_rate) {
             delay(2);
         }
     }
-    // ledcSetup(TONE_PIN_CHANNEL, 0, 13);
-    ledcAttachPin(SPEAKER_PIN, TONE_PIN_CHANNEL);
+    ledcAttach(TONE_PIN_CHANNEL, 0, 13);
 }
