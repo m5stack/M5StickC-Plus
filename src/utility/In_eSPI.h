@@ -19,6 +19,9 @@
 
 //#define ESP32 //Just used to test ESP32 options
 
+// Include hal/gpio to fix Espressif hiding GPIO from public use
+#include "hal/gpio_ll.h"
+
 // Include header file that defines the fonts loaded, the TFT drivers
 // available and the pins to be used
 #include "In_eSPI_Setup.h"
