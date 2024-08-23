@@ -7,13 +7,22 @@ SPEAKER::SPEAKER(void) {
 
 void SPEAKER::begin() {
     _begun = true;
-    ledcAttach(TONE_PIN_CHANNEL, 0, 13);
+#if ESP_IDF_VERSION_MAJOR <= 4
+    ledcSetup(TONE_PIN_CHANNEL, 0, 13);
+    ledcAttachPin(SPEAKER_PIN, TONE_PIN_CHANNEL);
+#elif ESP_IDF_VERSION_MAJOR > 4
+    ledcAttach(SPEAKER_PIN, 0, 13);
+#endif
     setBeep(4000, 100);
 }
 
 void SPEAKER::end() {
     mute();
+#if ESP_IDF_VERSION_MAJOR <= 4
+    ledcDetachPin(SPEAKER_PIN);
+#elif ESP_IDF_VERSION_MAJOR > 4
     ledcDetach(SPEAKER_PIN);
+#endif
     _begun = false;
 }
 
@@ -74,5 +83,9 @@ void SPEAKER::playMusic(const uint8_t* music_data, uint16_t sample_rate) {
             delay(2);
         }
     }
-    ledcAttach(TONE_PIN_CHANNEL, 0, 13);
+#if ESP_IDF_VERSION_MAJOR <= 4
+    ledcAttachPin(SPEAKER_PIN, TONE_PIN_CHANNEL);
+#elif ESP_IDF_VERSION_MAJOR > 4
+    ledcAttach(SPEAKER_PIN, 0, 13);
+#endif
 }
