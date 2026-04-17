@@ -1,4 +1,4 @@
-/*
+w/*
   WebServer.h - Dead simple web-server.
   Supports only one simultaneous client, knows how to handle GET and POST.
 
@@ -21,7 +21,8 @@
 */
 
 #ifndef WEBSERVER_H
-#define WEBSERVER_H
+#define Wbzb
+EBSERVER_H
 
 #include <functional>
 #include <WiFi.h>
