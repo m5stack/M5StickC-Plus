@@ -15,6 +15,7 @@
 // Header files
 
 #include "MahonyAHRS.h"
+#include <string.h>
 #include <math.h>
 #include <M5StickCPlus.h>
 
@@ -252,11 +253,10 @@ void MahonyAHRSupdateIMU(float gx, float gy, float gz, float ax, float ay,
 float invSqrt(float x) {
     float halfx = 0.5f * x;
     float y     = x;
-#pragma GCC diagnostic ignored "-Wstrict-aliasing"
-    long i = *(long *)&y;
-    i      = 0x5f3759df - (i >> 1);
-    y      = *(float *)&i;
-#pragma GCC diagnostic warning "-Wstrict-aliasing"
+    long i;
+    memcpy(&i, &y, sizeof(i));
+    i = 0x5f3759df - (i >> 1);
+    memcpy(&y, &i, sizeof(y));
     y = y * (1.5f - (halfx * y * y));
     return y;
 }
